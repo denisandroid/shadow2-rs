@@ -37,7 +37,49 @@ extern crate libc;
 
 use std::ffi::CString;
 use std::ffi::CStr;
+use libc::c_long;
 
+/*
+#UlinProject24, fix:
+error[E0308]: mismatched types
+  --> /home/user/work/openwrt/dl/cargo/registry/src/index.crates.io-6f17d22bba15001f/shadow-0.0.1/src/lib.rs:63:26
+   |
+63 |             last_change: (*spwd).sp_lstchg,
+   |                          ^^^^^^^^^^^^^^^^^ expected `i64`, found `i32`
+ 
+error[E0308]: mismatched types
+  --> /home/user/work/openwrt/dl/cargo/registry/src/index.crates.io-6f17d22bba15001f/shadow-0.0.1/src/lib.rs:64:18
+   |
+64 |             min: (*spwd).sp_min,
+   |                  ^^^^^^^^^^^^^^ expected `i64`, found `i32`
+ 
+error[E0308]: mismatched types
+  --> /home/user/work/openwrt/dl/cargo/registry/src/index.crates.io-6f17d22bba15001f/shadow-0.0.1/src/lib.rs:65:18
+   |
+65 |             max: (*spwd).sp_max,
+   |                  ^^^^^^^^^^^^^^ expected `i64`, found `i32`
+ 
+error[E0308]: mismatched types
+  --> /home/user/work/openwrt/dl/cargo/registry/src/index.crates.io-6f17d22bba15001f/shadow-0.0.1/src/lib.rs:66:19
+   |
+66 |             warn: (*spwd).sp_warn,
+   |                   ^^^^^^^^^^^^^^^ expected `i64`, found `i32`
+ 
+error[E0308]: mismatched types
+  --> /home/user/work/openwrt/dl/cargo/registry/src/index.crates.io-6f17d22bba15001f/shadow-0.0.1/src/lib.rs:67:23
+   |
+67 |             inactive: (*spwd).sp_inact,
+   |                       ^^^^^^^^^^^^^^^^ expected `i64`, found `i32`
+ 
+error[E0308]: mismatched types
+  --> /home/user/work/openwrt/dl/cargo/registry/src/index.crates.io-6f17d22bba15001f/shadow-0.0.1/src/lib.rs:68:21
+   |
+68 |             expire: (*spwd).sp_expire,
+   |                     ^^^^^^^^^^^^^^^^^ expected `i64`, found `i32`
+ 
+For more information about this error, try `rustc --explain E0308`.
+error: could not compile `shadow` (lib) due to 6 previous errors
+*/
 
 /// Represents an entry in `/etc/shadow`
 #[derive(Debug)]
@@ -47,17 +89,17 @@ pub struct Shadow {
     /// encrypted password
     pub password: String,
     /// last password change
-    pub last_change: i64,
+    pub last_change: c_long,
     /// days until change allowed
-    pub min: i64,
+    pub min: c_long,
     /// days before change required
-    pub max: i64,
+    pub max: c_long,
     /// days warning for expiration
-    pub warn: i64,
+    pub warn: c_long,
     /// days before account inactive
-    pub inactive: i64,
+    pub inactive: c_long,
     /// date when account expires
-    pub expire: i64,
+    pub expire: c_long,
 }
 
 impl Shadow {

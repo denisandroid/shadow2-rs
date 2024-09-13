@@ -1,6 +1,6 @@
 [package]
 name = "shadow"
-version = "0.0.1"
+version = "0.0.2"
 authors = ["Ian D. Scott <ian@iandouglasscott.com>"]
 description = "Bindings for libc /etc/shadow password functions"
 repository = "https://github.com/ids1024/shadow-rs"
